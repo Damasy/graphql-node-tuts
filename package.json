@@ -1,0 +1,17 @@
+{
+  "name": "graphql-node-tutorial",
+  "version": "1",
+  "description": "a graphQl nodejs apollo server tutorial",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "adamasy",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^3.6.1",
+    "graphql": "^16.2.0",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.15"
+  }
+}
