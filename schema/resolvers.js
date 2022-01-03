@@ -1,4 +1,4 @@
-const { UserList, MovieList } = require('../FakeData');
+let { UserList, MovieList } = require('../FakeData');
 const _ = require('lodash');
 
 const resolvers = {
@@ -26,6 +26,39 @@ const resolvers = {
       return _.filter(MovieList, (movie) => 
         movie.yearOfPublication >= 2000 && movie.yearOfPublication <= 2010
       )
+    }
+  },
+  Mutation: {
+    createUser: (parent, args) => {
+      const user = args.user;
+      const lastId = UserList[UserList.length - 1].id
+      user.id = lastId + 1
+      UserList.push(user);
+      return user;
+    },
+    updateUsername: (parent, args) => {
+      const {id, newUsername} = args.input;
+      let _user;
+      UserList.map(user => {
+        if(user.id === +id) {
+          user.username = newUsername
+          _user = user;
+        }
+        return user;
+      });
+      return _user;
+    },
+    deleteUser: (parent, args) => {
+      let id = args.id;
+      let _user;
+      UserList = UserList.filter(user => {
+        if(user.id === +id) {
+          _user = user;
+          return false
+        }
+        return user;
+      })
+      return _user;
     }
   }
 }

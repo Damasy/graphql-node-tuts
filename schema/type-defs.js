@@ -19,6 +19,24 @@ const typeDefs = gql `
 		yearOfPublication: Int!
 		isInTheaters: Boolean!
 	}
+
+	input createUserInput {
+		name: String!
+		username: String!
+		age: Int!
+		nationality: Nationality!
+	}
+
+	input updateUsernameInput {
+		id: ID!
+		newUsername: String!
+	}
+
+	type Mutation {
+		createUser(user: createUserInput!): User
+		updateUsername(input: updateUsernameInput!): User
+		deleteUser(id: ID!): User
+	}
 	
 	type Query {
 		users: [User!]!
@@ -33,6 +51,7 @@ const typeDefs = gql `
 		INDIA
 		GERMANY
 		CHILE
+		EGYPT
 	}
 `;
 
