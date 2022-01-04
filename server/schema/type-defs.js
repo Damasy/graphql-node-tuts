@@ -24,7 +24,7 @@ const typeDefs = gql `
 		name: String!
 		username: String!
 		age: Int!
-		nationality: Nationality!
+		nationality: Nationality = BRAZIL
 	}
 
 	input updateUsernameInput {
@@ -33,9 +33,9 @@ const typeDefs = gql `
 	}
 
 	type Mutation {
-		createUser(user: createUserInput!): User
-		updateUsername(input: updateUsernameInput!): User
-		deleteUser(id: ID!): User
+		createUser(user: createUserInput): User
+		updateUsername(input: updateUsernameInput): User
+		deleteUser(id: ID): User
 	}
 	
 	type Query {
