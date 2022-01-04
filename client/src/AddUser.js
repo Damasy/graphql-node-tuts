@@ -12,8 +12,8 @@ query {
 `;
 
 const _createUser = gql`
-  mutation createUser($input: createUserInput) {
-    createUser(user: $input) {
+  mutation createUser($user: createUserInput) {
+    createUser(user: $user) {
       username
       name
       age
@@ -40,17 +40,6 @@ function AddUser() {
           console.log(error, 'error');
       }
   });
-
-  const fuckUser = () => {
-    const _user = { name, username, age: Number(age), nationality };
-    const vars = {
-      "variables": {
-        "user": JSON.parse(JSON.stringify(_user))
-      }
-    }
-    console.log(vars);
-    addUser(vars)
-  }
 
   const { data: nationalities } = useQuery(getNationalitiesLookup);
 
@@ -94,7 +83,11 @@ function AddUser() {
       </select>
       <br/>
       <br/>
-      <button onClick={() => fuckUser()}
+      <button onClick={() => addUser({
+              "variables": {
+                "user": { name, username, age: Number(age), nationality },
+              },
+            })}
       >
         Add User
       </button>
