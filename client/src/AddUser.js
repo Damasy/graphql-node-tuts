@@ -14,11 +14,14 @@ query {
 const _createUser = gql`
   mutation createUser($user: createUserInput) {
     createUser(user: $user) {
-      username
-      name
-      age
-      nationality
+      ...userFragment
     }
+  }
+  fragment userFragment {
+    username
+    name
+    age
+    nationality
   }
 `;
 
